@@ -3,33 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>bitcoin DCA graph</title>
+    <!--bootstrap CSS-->
     <link  href="/resource/bootstrap-4.4.1-dist/css/bootstrap-grid.min.css" rel="stylesheet"/>
     <link  href="/resource/bootstrap-4.4.1-dist/css/bootstrap.min.css" rel="stylesheet"/>
     <link  href="/resource/bootstrap-4.4.1-dist/css/bootstrap-reboot.min.css" rel="stylesheet"/>
+
+
+    <!--G2 library-->
     <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.data-set-0.10.2/dist/data-set.min.js"></script>
     <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g2-3.5.11/dist/g2.min.js"></script>
     <script src="https://gw.alipayobjects.com/as/g/datavis/assets/1.0.5/g2/3.0.0/g2.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!--jquery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!--java script-->
     <script src="/resource/bootstrap-4.4.1-dist/js/bootstrap.bundle.min.js"></script>
     <script src="/resource/bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
-    <!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>-->
-    <!--<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
 </head>
 <body>
-<div class="mt-4 mb-4"><div class="font-weight-bold h3 text-center">
-    Bitcoin Graphing Calculator
-</div></div>
-<div class="col-sm-3"> </div>
-<div class="offset-3 col-sm-9" id="container">
+<div class="mt-4 mb-4">
+    <div class="font-weight-bold h3 text-center">
+        Bitcoin Graphing Calculator
+    </div>
+</div>
+<div class="col-md-6 col-sm-12">
+    <div id="container"></div>
     <div id="slider"></div>
 </div>
+<div class="col-sm-6 mt-1 mb-1">
 
+</div>
 
 <script>
-//        const sliderDiv = document.createElement('div');
-//        sliderDiv.id = 'slider';
-        const container = document.getElementById('container');
-//        container.parentNode.appendChild(sliderDiv);
+
 
         fetch('bitcoin.json')
             .then(res => res.json())
@@ -53,8 +58,8 @@
         const chart = new G2.Chart({
             container: 'container',
             forceFit: true,
-            height: 500 - 60,
-            padding: [40, 40, 40, 80],
+            height: 400,
+            padding: [40, 40, 40, 60],
             animate: false
         });
 
@@ -64,7 +69,7 @@ chart.source(dv, {
     },
     value: {
         type: 'linear',
-        tickInterval: 5000
+        tickInterval: 2000
     }
 });
 
@@ -79,19 +84,33 @@ chart.axis('value', {
 
 chart.line()
         .position('date*value')
-        .color('l(100) 0:#293c55 1:#f7f7f7')
-        .opacity(0.85);
+        .color('black')
+        .opacity(0.85)
+        .size(0.75);
 chart.render();
+
+
 chart.interact('slider',{
     container: 'slider',
-    onChange(ev){
-    const{startValue,endValue}=ev;
-    ds.setState('start',startValue);
-    ds.setState('end',endValue);
+    padding:[40, 40, 40, 60],
+    onChange: function slider(ev){
+        const{startValue,endValue}=ev;
+        ds.setState('start',startValue);
+        ds.setState('end',endValue);
+    }
+})
+        chart.interact('brush',{
+            type:'X',
+            onBrushstart(){
+            console.log("start");
+        },onBrushend(){
+            console.log("end")
+        }
+        });
 
-},
+
 });
-});
+
     </script>
 
 
