@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\resource",
+    "\\resource\\js"
   ],
-  "SelectedNode": "\\BTUSD.csv",
+  "SelectedNode": "\\resource\\js\\graph.min.js",
   "PreviewInSolutionExplorer": false
 }

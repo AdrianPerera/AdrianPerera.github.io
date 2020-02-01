@@ -25,22 +25,33 @@
             Bitcoin Graphing Calculator
         </div>
     </div>
-    <div class="row">
+    <div class="row" style="padding-right:20px">
         <div class="col-md-6">
             <div id="container"></div>
             <div id="slider"></div>
         </div>
         <div class="col-md-6 mt-1 mb-1">
-            <p style="font-size:15px;">For more accurate highlighting, use the slider to zoom the chart along the x axis</p>
-            <p>Starting date : <span id="starting_date"></span></p>
-            <p>Ending date : <span id="ending_date"></span></p>
+            <p style="font-size:15px;">For more accurate selection, use the slider to zoom the chart along the x axis</p>
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Starting date</th>
+                        <th scope="col">Ending date</th>
+                        <th scope="col">DCA value for the region </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> <span id="starting_date"></span></td>
+                        <td> <span id="ending_date"></span> </td>
+                        <td> <span id="dca_value"></span> </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
-
-
     <script src="resource/js/index.min.js"></script>
-
 
 </body>
 </html>
