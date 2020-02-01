@@ -31,94 +31,15 @@
             <div id="slider"></div>
         </div>
         <div class="col-md-6 mt-1 mb-1">
-            <p class="font-weight-bold h7">For more accurate highlighting, use the slider to zoom the chart along the x axis</p>
+            <p style="font-size:15px;">For more accurate highlighting, use the slider to zoom the chart along the x axis</p>
             <p>Starting date : <span id="starting_date"></span></p>
             <p>Ending date : <span id="ending_date"></span></p>
         </div>
     </div>
 
-    <script>
-        fetch('bitcoin.json')
-            .then(res => res.json())
-            .then(data => {
-                const ds = new DataSet({
-                    state: {
-                        start: '13-10-10',
-                        end: '19-12-12'
-                    }
-                });
-                const dv = ds.createView('origin').source(data);
-                dv.transform({
-                    type: 'filter',
-                    callback: function callbaack(obj) {
-                        const date = obj.date;
-                        return date >= ds.state.start && date <= ds.state.end;
-
-                    }
-                });
-
-                const chart = new G2.Chart({
-                    container: 'container',
-                    forceFit: true,
-                    height: 400,
-                    padding: [40, 40, 40, 60],
-                    animate: false
-                });
-
-                chart.source(dv, {
-                    date: {
-                        tickCount: 10
-                    },
-                    value: {
-                        type: 'linear',
-                        tickInterval: 1000
-                    }
-                });
-
-                chart.axis('value', {
-                    lable: {
-                        textStyle: {
-                            fill: '#aaaaaa'
-                        }
-                    },
-                    grid: null
-                });
-
-                chart.line()
-                    .position('date*value')
-                    .color('black')
-                    .opacity(0.85)
-                    .size(0.75);
-                chart.render();
 
 
-                chart.interact('slider', {
-                    container: 'slider',
-                    padding: [40, 40, 40, 60],
-                    onChange: function slider(ev) {
-                        const { startValue, endValue } = ev;
-                        ds.setState('start', startValue);
-                        ds.setState('end', endValue);
-                    }
-                })
-                chart.interact('brush', {
-                    type: 'X',
-                    onBrushstart() {
-
-                    }, onBrushend(event) {
-                        let arrayLength = event.date.length;
-                        console.log("date: ",event.date[0], event.date[arrayLength-1]);
-                        console.log("value: ",event.value[0],event.value[arrayLength-1]);
-                        $('#starting_date').text(event.date[0]);
-                        $('#ending_date').text(event.date[arrayLength - 1]);
-                    }
-                });
-
-
-            });
-
-    </script>
-
+    <script src="resource/js/index.min.js"></script>
 
 
 </body>
