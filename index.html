@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <title>bitcoin DCA graph</title>
     <!--bootstrap CSS-->
-    <link  href="/resource/bootstrap-4.4.1-dist/css/bootstrap-grid.min.css" rel="stylesheet"/>
-    <link  href="/resource/bootstrap-4.4.1-dist/css/bootstrap.min.css" rel="stylesheet"/>
-    <link  href="/resource/bootstrap-4.4.1-dist/css/bootstrap-reboot.min.css" rel="stylesheet"/>
+    <link href="/resource/bootstrap-4.4.1-dist/css/bootstrap-grid.min.css" rel="stylesheet" />
+    <link href="/resource/bootstrap-4.4.1-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/resource/bootstrap-4.4.1-dist/css/bootstrap-reboot.min.css" rel="stylesheet" />
 
 
     <!--G2 library-->
@@ -20,96 +20,102 @@
     <script src="/resource/bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="mt-4 mb-4">
-    <div class="font-weight-bold h3 text-center">
-        Bitcoin Graphing Calculator
+    <div class="mt-4 mb-4">
+        <div class="font-weight-bold h3 text-center">
+            Bitcoin Graphing Calculator
+        </div>
     </div>
-</div>
-<div class="col-md-6 col-sm-12">
-    <div id="container"></div>
-    <div id="slider"></div>
-</div>
-<div class="col-sm-6 mt-1 mb-1">
+    <div class="row">
+        <div class="col-md-6">
+            <div id="container"></div>
+            <div id="slider"></div>
+        </div>
+        <div class="col-md-6 mt-1 mb-1">
+            <p class="font-weight-bold h7">For more accurate highlighting, use the slider to zoom the chart along the x axis</p>
+            <p>Starting date : <span id="starting_date"></span></p>
+            <p>Ending date : <span id="ending_date"></span></p>
+        </div>
+    </div>
 
-</div>
-
-<script>
-
-
+    <script>
         fetch('bitcoin.json')
             .then(res => res.json())
             .then(data => {
-                const ds=new DataSet({
-                    state : {
-                        start:'13-10-10',
+                const ds = new DataSet({
+                    state: {
+                        start: '13-10-10',
                         end: '19-12-12'
                     }
                 });
-        const dv = ds.createView('origin').source(data);
-        dv.transform({
-            type: 'filter',
-            callback: function callbaack(obj) {
-                const date = obj.date;
-                return date >= ds.state.start && date <= ds.state.end;
+                const dv = ds.createView('origin').source(data);
+                dv.transform({
+                    type: 'filter',
+                    callback: function callbaack(obj) {
+                        const date = obj.date;
+                        return date >= ds.state.start && date <= ds.state.end;
 
-            }
-        });
+                    }
+                });
 
-        const chart = new G2.Chart({
-            container: 'container',
-            forceFit: true,
-            height: 400,
-            padding: [40, 40, 40, 60],
-            animate: false
-        });
+                const chart = new G2.Chart({
+                    container: 'container',
+                    forceFit: true,
+                    height: 400,
+                    padding: [40, 40, 40, 60],
+                    animate: false
+                });
 
-chart.source(dv, {
-    date: {
-        tickCount: 10
-    },
-    value: {
-        type: 'linear',
-        tickInterval: 2000
-    }
-});
+                chart.source(dv, {
+                    date: {
+                        tickCount: 10
+                    },
+                    value: {
+                        type: 'linear',
+                        tickInterval: 1000
+                    }
+                });
 
-chart.axis('value', {
-    lable: {
-        textStyle: {
-            fill: '#aaaaaa'
-        }
-    },
-    grid: null
-});
+                chart.axis('value', {
+                    lable: {
+                        textStyle: {
+                            fill: '#aaaaaa'
+                        }
+                    },
+                    grid: null
+                });
 
-chart.line()
-        .position('date*value')
-        .color('black')
-        .opacity(0.85)
-        .size(0.75);
-chart.render();
-
-
-chart.interact('slider',{
-    container: 'slider',
-    padding:[40, 40, 40, 60],
-    onChange: function slider(ev){
-        const{startValue,endValue}=ev;
-        ds.setState('start',startValue);
-        ds.setState('end',endValue);
-    }
-})
-        chart.interact('brush',{
-            type:'X',
-            onBrushstart(){
-            console.log("start");
-        },onBrushend(){
-            console.log("end")
-        }
-        });
+                chart.line()
+                    .position('date*value')
+                    .color('black')
+                    .opacity(0.85)
+                    .size(0.75);
+                chart.render();
 
 
-});
+                chart.interact('slider', {
+                    container: 'slider',
+                    padding: [40, 40, 40, 60],
+                    onChange: function slider(ev) {
+                        const { startValue, endValue } = ev;
+                        ds.setState('start', startValue);
+                        ds.setState('end', endValue);
+                    }
+                })
+                chart.interact('brush', {
+                    type: 'X',
+                    onBrushstart() {
+
+                    }, onBrushend(event) {
+                        let arrayLength = event.date.length;
+                        console.log("date: ",event.date[0], event.date[arrayLength-1]);
+                        console.log("value: ",event.value[0],event.value[arrayLength-1]);
+                        $('#starting_date').text(event.date[0]);
+                        $('#ending_date').text(event.date[arrayLength - 1]);
+                    }
+                });
+
+
+            });
 
     </script>
 
