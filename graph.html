@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bitcoin DCA graph</title>
+    <link href="/resource/bootstrap-4.4.1-dist/css/bootstrap-grid.min.css" rel="stylesheet" />
+    <link href="/resource/bootstrap-4.4.1-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/resource/bootstrap-4.4.1-dist/css/bootstrap-reboot.min.css" rel="stylesheet" />
+
+
+    <!--G2 library-->
+    <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.data-set-0.10.2/dist/data-set.min.js"></script>
+    <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g2-3.5.11/dist/g2.min.js"></script>
+    <script src="https://gw.alipayobjects.com/as/g/datavis/assets/1.0.5/g2/3.0.0/g2.min.js"></script>
+    <!--jquery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!--java script-->
+    <script src="/resource/bootstrap-4.4.1-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/resource/bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <div class="mt-4 mb-4">
+        <div class="font-weight-bold h3 text-center">
+            Bitcoin Graphing Calculator
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div id="container"></div>
+            <div id="slider"></div>
+        </div>
+        <div class="col-md-6 mt-1 mb-1">
+            <p style="font-size:15px;">For more accurate highlighting, use the slider to zoom the chart along the x axis</p>
+            <p>This graph uses the csv file with some modifications.</p>
+            <p>Starting date : <span id="starting_date"></span></p>
+            <p>Ending date : <span id="ending_date"></span></p>
+        </div>
+    </div>
+
+ 
+    <script>
+        
+        var data;
+        var json=[];
+        $.ajax({
+            type: "GET",
+            url: "BTUSD.csv",
+            dataType: "text",
+            success: function (response) {
+                const testCSV = response;
+                const dv1 = new DataSet.View().source(testCSV, {
+                    type: 'csv',
+                });
+                data = dv1.rows
+                data = data.reverse();
+                const ds = new DataSet({
+                    state: {
+                        start: '13-10-10',
+                        end: '19-12-12'
+                    }
+                });
+                const dv = ds.createView('origin').source(data);
+                dv.transform({
+                    type: 'filter',
+                    callback: function callbaack(obj) {
+                        const Date = obj.Date;
+                        return Date >= ds.state.start && Date <= ds.state.end;
+
+                    }
+                });
+
+                const chart = new G2.Chart({
+                    container: 'container',
+                    forceFit: true,
+                    height: 400,
+                    padding: [40, 40, 40, 60],
+                    animate: false
+                });
+
+                chart.source(dv, {
+                    Date: {
+                        tickCount: 10
+                    },
+                    Open: {
+                        type: 'linear',
+                        tickInterval: 1000
+                    }
+                });
+
+                chart.axis('Open', {
+                    lable: {
+                        textStyle: {
+                            fill: '#aaaaaa'
+                        }
+                    },
+                    grid: null
+                });
+
+                chart.line()
+                    .position('Date*Open')
+                    .color('black')
+                    .opacity(0.85)
+                    .size(0.75);
+                chart.render();
+
+
+                chart.interact('slider', {
+                    container: 'slider',
+                    padding: [40, 40, 40, 60],
+                    onChange: function slider(ev) {
+                        const { startValue, endValue } = ev;
+                        ds.setState('start', startValue);
+                        ds.setState('end', endValue);
+                    }
+                })
+                chart.interact('brush', {
+                    type: 'X',
+                    onBrushstart() {
+
+                    }, onBrushend(event) {
+                        let arrayLength = event.Date.length;
+                        let startingDate = event.Date[0];
+                        let endingDate = event.Date[arrayLength - 1];
+/*                        console.log("value: ",event.value[0],event.value[arrayLength-1]);
+*/                        $('#starting_date').text(startingDate);
+                        $('#ending_date').text(endingDate);
+                    }
+                });
+
+
+                
+
+
+            }
+        });
+       
+    </script>
+
+
+</body>
+</html>
