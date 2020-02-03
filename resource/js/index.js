@@ -34,7 +34,7 @@ fetch('bitcoin.json')
 
         chart.source(dv, {
             date: {
-                tickCount: 10
+                tickCount: 8
             },
             value: {
                 type: 'linear',
