@@ -6,6 +6,7 @@
 </head>
 <body>
     <div id="container" />
+    <div id="container1" />
     <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g2-3.5.11/dist/g2.min.js"></script>
     <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.data-set-0.10.2/dist/data-set.min.js"></script>
     <script>
@@ -17,6 +18,8 @@
     const container = document.getElementById('container');
     container.appendChild(canvasDiv1);
     container.appendChild(canvasDiv2);
+
+
 
     fetch('https:/g2.antv.vision/zh/examples/data/sp500.json')
       .then(res => res.json())
@@ -69,7 +72,7 @@
         });
         chart2.source(data, {
           date: {
-            tickCount: 10,
+            tickCount: 11,
             type: 'time',
             mask: 'YYYY'
           }

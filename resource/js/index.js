@@ -66,23 +66,27 @@ fetch('bitcoin.json')
                 align: 'center' // 网格顶点从两个刻度中间开始
             }
         });
-        chart.line()
+        chart.area()
             .position('date*value')
-            .color('black')
+            .color('#dd2e03')
             .opacity(0.85)
             .size(0.75);
         chart.render();
 
 
-        chart.interact('slider', {
-            container: 'slider',
-            padding: [40, 40, 40, 60],
-            onChange: function slider(ev) {
-                const { startValue, endValue } = ev;
-                ds.setState('start', startValue);
-                ds.setState('end', endValue);
-            }
-        })
+        //chart.interact('slider', {
+        //    container: 'slider',
+        //    padding: [40, 40, 40, 60],
+        //    backgroundChart: {
+        //        type: 'area',
+        //        color:"green"
+        //    },
+        //    onChange: function slider(ev) {
+        //        const { startValue, endValue } = ev;
+        //        ds.setState('start', startValue);
+        //        ds.setState('end', endValue);
+        //    }
+        //})
         chart.interact('brush', {
             type: 'X',
             onBrushstart() {
@@ -103,5 +107,47 @@ fetch('bitcoin.json')
             }
         });
 
+        const chart2 = new G2.Chart({
+            container: 'container2',
+            forceFit: true,
+            height: 105,
+            padding: [40, 40, 40, 60],
+            animate: false
+        });
+        chart2.source(data, {
+            date: {
+                tickCount: 10
+            },
+            value: {
+                type:'linear'
+            }
+        });
+        chart2.axis('date', {
+            label: {
+                formatter: text => {
+                    return text.replace(/(\d{2})-(\d{2})-(\d{2})/g, function year(match, p1) {
+                        p1 = "20" + p1;
+                        return p1;
+                    });
+                }
+            }
 
+        });
+
+        chart2.tooltip(false);
+        chart2.axis('value', false);
+        chart2.area().position('date*value').active(false)
+            .opacity(0.85);
+
+        chart2.render();
+        chart2.interact('brush', {
+            type: 'X',
+            draggable: true,
+            inPlot: false,
+            onBrushmove(ev) {
+                const  dateArray  = ev.date;
+                ds.setState('start', dateArray[0]);
+                ds.setState('end', dateArray[dateArray.length - 1]);
+            }
+        });
     });
