@@ -28,8 +28,8 @@ fetch('bitcoin.json')
             container: 'container',
             forceFit: true,
             height: 400,
-            padding: [40, 40, 40, 60],
-            animate: false
+            padding: [40, 45, 20, 40],
+            animate: true
         });
 
         chart.source(dv, {
@@ -76,7 +76,7 @@ fetch('bitcoin.json')
 
         //chart.interact('slider', {
         //    container: 'slider',
-        //    padding: [40, 40, 40, 60],
+        //    padding: [40, 45, 20, 40],
         //    backgroundChart: {
         //        type: 'area',
         //        color:"green"
@@ -97,12 +97,12 @@ fetch('bitcoin.json')
                 let endingDate = event.date[arrayLength - 1];
                 $('#starting_date').text(startingDate.replace(/(\d{2})-(\d{2})-(\d{2})/g, dateConverter));
                 $('#ending_date').text(endingDate.replace(/(\d{2})-(\d{2})-(\d{2})/g, dateConverter));
-                var dcaValue = 0, dailyvalue = 0;
+                var dailyvalue = 0;
                 for (var i in event.value) {
                     dailyvalue += parseFloat(event.value[i]);
                 }
-                dcaValue = "$ " + (dailyvalue / arrayLength).toFixed(2);
-                console.log(dailyvalue, arrayLength, dcaValue);
+                var dcaValue = "$" + (dailyvalue / arrayLength).toFixed(2);
+                //console.log(dailyvalue, arrayLength, dcaValue);
                 $('#dca_value').text(dcaValue);
             }
         });
@@ -110,9 +110,9 @@ fetch('bitcoin.json')
         const chart2 = new G2.Chart({
             container: 'container2',
             forceFit: true,
-            height: 105,
-            padding: [40, 40, 40, 60],
-            animate: false
+            height: 50,
+            padding:  [10, 45, 20, 40],
+            animate: true
         });
         chart2.source(data, {
             date: {
