@@ -4,6 +4,7 @@
     <list default="true" id="ae5ac625-97c3-4018-9769-9db5507365fa" name="Default Changelist" comment="Default Changelist">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resource/images/propic.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/resource/images/propic.jpg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +54,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resource/images" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -67,11 +68,12 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\projects\upwork_projects\bitcoin-graph" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\projects\upwork_projects\bitcoin-graph\resource\images" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\projects\upwork_projects\bitcoin-graph\resource\images" />
+      <recent name="D:\projects\upwork_projects\bitcoin-graph" />
     </key>
   </component>
   <component name="RunManager">
@@ -299,7 +301,7 @@
       <workItem from="1607248991508" duration="8791000" />
       <workItem from="1607347260103" duration="7438000" />
       <workItem from="1607388236241" duration="11878000" />
-      <workItem from="1607403461906" duration="6462000" />
+      <workItem from="1607403461906" duration="8280000" />
     </task>
     <servers />
   </component>
@@ -346,10 +348,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1366.728@0.0.1366.728" timestamp="1607406511934" />
-    <state x="0" y="100" key="Vcs.Push.Dialog.v2" timestamp="1607250666943">
+    <state x="0" y="100" key="Vcs.Push.Dialog.v2" timestamp="1607413489305">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="0" y="100" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1607250666943" />
+    <state x="0" y="100" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1607413489305" />
     <state x="379" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1607404450482">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -366,10 +368,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1607388535003" />
-    <state x="746" y="276" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1607252629665">
+    <state x="746" y="276" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1607414313681">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="746" y="276" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.1366.728@0.0.1366.728" timestamp="1607252629665" />
+    <state x="746" y="276" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.1366.728@0.0.1366.728" timestamp="1607414313681" />
   </component>
   <component name="masterDetails">
     <states>
