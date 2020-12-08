@@ -28,7 +28,7 @@ fetch('bitcoin.json')
             container: 'container',
             forceFit: true,
             height: 400,
-            padding: [40, 45, 20, 40],
+            padding: [40, 45, 20, 60],
             animate: true
         });
 
@@ -43,6 +43,9 @@ fetch('bitcoin.json')
         });
         chart.axis('date', {
             label: {
+                textStyle: {
+                    fill: '#aaaaaa'
+                },
                 formatter: text => {
                     return text.replace(/(\d{2})-(\d{2})-(\d{2})/g, dateConverter);
                 }
@@ -54,23 +57,29 @@ fetch('bitcoin.json')
             label: {
                 textStyle: {
                     fill: '#aaaaaa'
+                },
+                formatter: text=>{
+                if(text==="0"){return  "0";}
+                else {
+                return "$"+text.substr(0,text.length-3)+"k";
                 }
+            }
             },
+            title:true,
             grid: {
                 type: 'line',
                 lineStyle: {
                     stroke: '#d9d9d0',
                     lineWidth: 1.5,
-                    lineDash: [4, 4]
+                    lineDash: [4,4]
                 },
-                align: 'center' // 网格顶点从两个刻度中间开始
+                align: 'justify'
             }
         });
         chart.area()
             .position('date*value')
-            .color('#dd2e03')
-            .opacity(0.85)
-            .size(0.75);
+            .color('#f89e31')
+            .size(0.5);
         chart.render();
 
 
@@ -110,8 +119,8 @@ fetch('bitcoin.json')
         const chart2 = new G2.Chart({
             container: 'container2',
             forceFit: true,
-            height: 50,
-            padding:  [10, 45, 20, 40],
+            height: 70,
+            padding:  [10, 45, 30, 60],
             animate: true
         });
         chart2.source(data, {
@@ -137,6 +146,7 @@ fetch('bitcoin.json')
         chart2.tooltip(false);
         chart2.axis('value', false);
         chart2.area().position('date*value').active(false)
+            .color('#3f981d')
             .opacity(0.85);
 
         chart2.render();
