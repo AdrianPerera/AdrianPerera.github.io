@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ae5ac625-97c3-4018-9769-9db5507365fa" name="Default Changelist" comment="Default Changelist">
-      <change afterPath="$PROJECT_DIR$/resource/images/coursera-vector-logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resource/images/hackerrank.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
@@ -306,7 +304,7 @@
       <workItem from="1607453422798" duration="9089000" />
       <workItem from="1607567058514" duration="14000" />
       <workItem from="1607600779198" duration="468000" />
-      <workItem from="1607841508331" duration="2116000" />
+      <workItem from="1607841508331" duration="3135000" />
     </task>
     <servers />
   </component>
