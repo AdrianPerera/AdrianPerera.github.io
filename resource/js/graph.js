@@ -16,7 +16,7 @@ $.ajax({
         const dv1 = new DataSet.View().source(testCSV, {
             type: 'csv',
         });
-        data = dv1.rows
+        data = dv1.rows;
         data = data.reverse();
         const ds = new DataSet({
             state: {
@@ -25,6 +25,7 @@ $.ajax({
             }
         });
         const dv = ds.createView('origin').source(data);
+        console.log(ds)
         dv.transform({
             type: 'filter',
             callback: function callbaack(obj) {
@@ -53,15 +54,32 @@ $.ajax({
         });
 
         chart.axis('Open', {
-            lable: {
+            label: {
                 textStyle: {
                     fill: '#aaaaaa'
+                },
+                formatter: text=>{
+                    if(text==="0"){return  "0";}
+                    else {
+                        return "$"+text.substr(0,text.length-3)+"k";
+                    }
                 }
+            },grid: {
+                type: 'line',
+                lineStyle: {
+                    stroke: '#d9d9d0',
+                    lineWidth: 1.5,
+                    lineDash: [4,4]
+                },
+                align: 'justify'
             },
-            grid: null
+            title:true
         });
         chart.axis('Date', {
             label: {
+                textStyle: {
+                    fill: '#aaaaaa'
+                },
                 formatter: text => {
                     return text.replace(/(\d{2})-(\d{2})-(\d{2})/g, dateConverter);
                 }
@@ -73,23 +91,12 @@ $.ajax({
             title: 'Date'
         });
 
-        chart.line()
+        chart.area()
             .position('Date*Open')
-            .color('black')
-            .opacity(0.85)
+            .color('#f89e31')
             .size(0.75);
 
         chart.render();
-
-        chart.interact('slider', {
-            container: 'slider',
-            padding: [40, 40, 40, 60],
-            onChange: function slider(ev) {
-                const { startValue, endValue } = ev;
-                ds.setState('start', startValue);
-                ds.setState('end', endValue);
-            }
-        });
 
         chart.interact('brush', {
             type: 'X',
@@ -108,13 +115,65 @@ $.ajax({
                 dcaValue = "$ " + (dailyvalue / arrayLength).toFixed(2);
                 console.log(dailyvalue, arrayLength, dcaValue);
                 $('#dca_value').text(dcaValue);
-              
+
             }
         });
 
+        const chart2 = new G2.Chart({
+            container: 'container2',
+            forceFit: true,
+            height: 70,
+            padding: [10, 45, 30, 60],
+            animate: true
+        });
+        chart2.source(dv1,{
+            date: {
+                tickCount: 10
+            },
+            // value: {
+            //     type: 'linear'
+            // }
+        })
+        chart2.axis('Date', {
+            label: {
+                formatter: text => {
+                    return text.replace(/(\d{2})-(\d{2})-(\d{2})/g, function year(match, p1) {
+                        p1 = "20" + p1;
+                        return p1;
+                    });
+                }
+            }
 
+        });
+        chart2.tooltip(false);
+        chart2.axis('Open', false);
+        chart2.area().position('Date*Open').active(true)
+            .color('#3f981d')
+            .opacity(0.85);
+        chart2.render();
+        chart2.interact('brush', {
+            type: 'X',
+            draggable: true,
+            inPlot: false,
+            onBrushmove(ev) {
+                const dateArray = ev.Date;
+                ds.setState('start', dateArray[0]);
+                ds.setState('end', dateArray[dateArray.length - 1]);
 
+                let arrayLength = dateArray.length;
+                let startingDate = ev.Date[0];
+                let endingDate = ev.Date[arrayLength - 1];
 
-
+                $('#starting_date').text(startingDate.replace(/(\d{2})-(\d{2})-(\d{2})/g, dateConverter));
+                $('#ending_date').text(endingDate.replace(/(\d{2})-(\d{2})-(\d{2})/g, dateConverter));
+                var dailyvalue = 0;
+                for (let i in ev.Open) {
+                    dailyvalue += parseFloat(ev.Open[i]);
+                }
+                var dcaValue = "$" + (dailyvalue / arrayLength).toFixed(2);
+                console.log(dailyvalue, arrayLength, dcaValue);
+                $('#dca_value').text(dcaValue);
+            },
+        });
     }
 });
