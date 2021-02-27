@@ -219,8 +219,8 @@ fetch('bitcoin.json')
                 const valueArraySelected= ev.value.slice(ds.state.ca,ds.state.da+1);
                 // console.log(dateArraySelected);
                 if(ds.state.chartSelectedLength>0){
-                    $('#starting_date').text(sliderStartingDate.replace(/(\d{2})-(\d{2})-(\d{2})/g, dateConverter));
-                    $('#ending_date').text(sliderEndingDate.replace(/(\d{2})-(\d{2})-(\d{2})/g, dateConverter));
+                    $('#starting_date').text(dateArraySelected[0].replace(/(\d{2})-(\d{2})-(\d{2})/g, dateConverter));
+                    $('#ending_date').text(dateArraySelected[dateArraySelected.length-1].replace(/(\d{2})-(\d{2})-(\d{2})/g, dateConverter));
                     var dailyvalue = 0;
                     for (var j in valueArraySelected) {
                             dailyvalue += parseFloat(valueArraySelected[j]);
