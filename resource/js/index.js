@@ -60,7 +60,7 @@ fetch('bitcoin.json')
             },
             value: {
                 type: 'linear',
-                tickCount:10
+                tickCount:8,
             }
         });
         chart.axis('date', {
@@ -99,10 +99,10 @@ fetch('bitcoin.json')
                 align: 'justify'
             }
         });
-        chart.area()
+        chart.line()
             .position('date*value')
-            .color('#f89e31')
-            .size(0.5);
+            .color('#000000')
+            .size(1);
 
 
         chart.tooltip(true, {

@@ -91,10 +91,10 @@ $.ajax({
             title: 'Date'
         });
 
-        chart.area()
+        chart.line()
             .position('Date*Open')
-            .color('#f89e31')
-            .size(0.75);
+            .color('#000000')
+            .size(1);
 
         chart.render();
 
@@ -127,12 +127,12 @@ $.ajax({
             animate: true
         });
         chart2.source(dv1,{
-            date: {
+            Date: {
                 tickCount: 10
             },
-            // value: {
-            //     type: 'linear'
-            // }
+            Open: {
+                type: 'linear'
+            }
         })
         chart2.axis('Date', {
             label: {
