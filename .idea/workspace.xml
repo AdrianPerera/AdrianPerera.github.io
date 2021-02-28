@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ae5ac625-97c3-4018-9769-9db5507365fa" name="Default Changelist" comment="Default Changelist">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bitcoin.json" beforeDir="false" afterPath="$PROJECT_DIR$/bitcoin.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resource/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resource/js/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -311,7 +310,9 @@
       <workItem from="1614397777162" duration="6271000" />
       <workItem from="1614413817628" duration="7232000" />
       <workItem from="1614429658588" duration="8698000" />
-      <workItem from="1614470512543" duration="1697000" />
+      <workItem from="1614470512543" duration="1792000" />
+      <workItem from="1614527304591" duration="997000" />
+      <workItem from="1614537718347" duration="68000" />
     </task>
     <servers />
   </component>
@@ -362,10 +363,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="0" y="100" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1607413489305" />
-    <state x="379" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1614470521005">
+    <state x="379" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1614537764553">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="379" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1614470521005" />
+    <state x="379" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1614537764553" />
     <state x="492" y="281" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1608130780461">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

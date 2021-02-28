@@ -51,7 +51,7 @@ fetch('bitcoin.json')
             forceFit: true,
             height: 450,
             padding: [40, 45, 20, 60],
-            animate: true
+            animate: false
         });
 
         chart.source(dv, {
