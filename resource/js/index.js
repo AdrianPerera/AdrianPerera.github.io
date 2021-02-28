@@ -60,7 +60,7 @@ fetch('bitcoin.json')
             },
             value: {
                 type: 'linear',
-                tickInterval: 2000
+                tickCount:10
             }
         });
         chart.axis('date', {
@@ -163,7 +163,8 @@ fetch('bitcoin.json')
             forceFit: true,
             height: 70,
             padding: [10, 45, 30, 60],
-            animate: true
+            animate: false
+
         });
         chart2.source(data, {
             date: {
