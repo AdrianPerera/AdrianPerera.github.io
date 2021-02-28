@@ -27,8 +27,8 @@ fetch('bitcoin.json')
     .then(data => {
         const ds = new DataSet({
             state: {
-                start: '13-10-10',
-                end: '19-12-12',
+                start: '14-10-13',
+                end: '21-02-26',
                 chartArrayLength:0,
                 chartSelectedLength:0,
                 ca:0,
@@ -49,7 +49,7 @@ fetch('bitcoin.json')
         const chart = new G2.Chart({
             container: 'container',
             forceFit: true,
-            height: 400,
+            height: 450,
             padding: [40, 45, 20, 60],
             animate: true
         });
