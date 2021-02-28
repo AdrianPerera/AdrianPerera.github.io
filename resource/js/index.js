@@ -226,7 +226,7 @@ fetch('bitcoin.json')
                     }
                     var dcaValue = "$ " + (dailyvalue / sliderArrayLength).toFixed(2);
                     $('#dca_value').text(dcaValue);
-                    $('#no_days').text(dateArraySelected.length);
+                    $('#no_days').text(ds.state.chartSelectedLength);
                 }
 
             },
