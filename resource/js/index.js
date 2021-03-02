@@ -127,12 +127,14 @@ fetch('bitcoin.json')
         chart.interact('brush', {
             type: 'X',
             onBrushmove(event) {
-                let dateArraySelected= event.date;
-                let chartSelectedLength = dateArraySelected.length;
+                var dateArraySelected= event.date;
+                var halfArray= dateArraySelected.slice(0,dateArraySelected.length/4)
+                var chartSelectedLength = dateArraySelected.length;
                 $('#no_days').text(chartSelectedLength);
             }, onBrushend(event) {
 
-                let dateArraySelected= event.date;
+                let dateArraySelected= event.date.slice(0,event.date.length/4);
+                let valueArraySelected= event.value.slice(0,event.date.length/4)
                 let chartSelectedLength = dateArraySelected.length;
                 let startingDateSelected = dateArraySelected[0];
                 let endingDateSelected = dateArraySelected[chartSelectedLength - 1];
@@ -141,17 +143,20 @@ fetch('bitcoin.json')
                 ds.setState('chartSelectedLength', chartSelectedLength); //setting chartSelectedArray length to the state
                 ds.setState('ca',ca);
                 ds.setState('da',da);
-                // console.log(event.date);
+                console.log("dateArray",dateArraySelected);
+                console.log("valueArray",valueArraySelected);
+                console.log(startingDateSelected,endingDateSelected);
                 // console.log(dateFormatChange(startingDateSelected),addDate(dateFormatChange(startingDateSelected),chartSelectedLength),countDays(dateFormatChange(startingDateSelected),dateFormatChange(endingDateSelected)));
                 // console.log(startingDateSelected,endingDateSelected,ca,da);
                 // console.log(dv.rows[ca].date,dv.rows[da].date);
                 $('#starting_date').text(startingDateSelected.replace(/(\d{2})-(\d{2})-(\d{2})/g, dateConverter));
                 $('#ending_date').text(endingDateSelected.replace(/(\d{2})-(\d{2})-(\d{2})/g, dateConverter));
                 var dailyvalue = 0;
-                for (var i in event.value) {
-                    dailyvalue += parseFloat(event.value[i]);
+                var i;
+                for (i in valueArraySelected) {
+                    dailyvalue += parseFloat(valueArraySelected[i]);
                 }
-                var dcaValue = "$ " + (dailyvalue / chartSelectedLength).toFixed(2);
+                var dcaValue = "$ " + (dailyvalue / valueArraySelected.length).toFixed(2);
                 //console.log(dailyvalue, arrayLength, dcaValue);
                 $('#dca_value').text(dcaValue);
                 $('#no_days').text(chartSelectedLength);
@@ -216,7 +221,8 @@ fetch('bitcoin.json')
 
                 const dateArraySelected= dateArray.slice(ds.state.ca,ds.state.da+1);
                 const valueArraySelected= ev.value.slice(ds.state.ca,ds.state.da+1);
-                // console.log(ds.state.ca,ds.state.da,dateArraySelected,valueArraySelected);
+                console.log(ds.state.ca,ds.state.da,dateArraySelected,valueArraySelected);
+                console.log("chartselectedlength",ds.state.chartSelectedLength)
                 if(ds.state.chartSelectedLength>0){
                     $('#starting_date').text(dateArraySelected[0].replace(/(\d{2})-(\d{2})-(\d{2})/g, dateConverter));
                     $('#ending_date').text(dateArraySelected[dateArraySelected.length-1].replace(/(\d{2})-(\d{2})-(\d{2})/g, dateConverter));
@@ -224,7 +230,7 @@ fetch('bitcoin.json')
                     for (var j in valueArraySelected) {
                             dailyvalue += parseFloat(valueArraySelected[j]);
                     }
-                    var dcaValue = "$ " + (dailyvalue / sliderArrayLength).toFixed(2);
+                    var dcaValue = "$ " + (dailyvalue / valueArraySelected.length).toFixed(2);
                     $('#dca_value').text(dcaValue);
                     $('#no_days').text(ds.state.chartSelectedLength);
                 }
