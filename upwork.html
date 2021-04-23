@@ -1,12 +1,18 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+<style>
+    html {
+        overflow-y: scroll;
+    }
+</style>
+
 <head>
     <meta charset="UTF-8">
     <title>bitcoin DCA graph</title>
     <!--bootstrap CSS-->
-    <link href="/resource/bootstrap-4.4.1-dist/css/bootstrap-grid.min.css" rel="stylesheet"/>
-    <link href="/resource/bootstrap-4.4.1-dist/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="/resource/bootstrap-4.4.1-dist/css/bootstrap-reboot.min.css" rel="stylesheet"/>
+    <link href="/resource/bootstrap-4.4.1-dist/css/bootstrap-grid.min.css" rel="stylesheet" />
+    <link href="/resource/bootstrap-4.4.1-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/resource/bootstrap-4.4.1-dist/css/bootstrap-reboot.min.css" rel="stylesheet" />
 
 
     <!--G2 library-->
@@ -19,57 +25,61 @@
     <script src="/resource/bootstrap-4.4.1-dist/js/bootstrap.bundle.min.js"></script>
     <script src="/resource/bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
 </head>
+
 <body>
-<div class="badge-light">
-    <div class="border-info card-body justify-content-start">
-        <a href="/" target="_self"><img src="bitcoin.png" style="width:30px;vertical-align: bottom"></a>
-        <span class="h4 ml-1">
-             Bitcoin Graphing Calculator
-        </span>
+    <div class="badge-light">
+        <div class="border-info card-body justify-content-start">
+            <a href="/" target="_self"><img src="bitcoin.png" style="width:30px;vertical-align: bottom"></a>
+            <span class="h4 ml-1">
+                Bitcoin Graphing Calculator
+            </span>
+        </div>
     </div>
-</div>
-<div class="row mt-3" style="padding-right:15px;padding-left:45px;">
-<!--    <div class="col-md-1"></div>-->
-    <div class="row col-md-12 border rounded shadow">
-        <div class="col-md-6">
+    <div class="row mt-3" style="padding-right:15px;padding-left:45px;">
+        <!--    <div class="col-md-1"></div>-->
+        <div class="row col-md-12 border rounded shadow">
+            <div class="col-md-6">
                 <div id="container"></div>
 
                 <div id="container2"></div>
-        </div>
-        <div class="col-md-6 mt-3" style="padding-right: 5px;padding-left: 5px">
-            <div>
-
-                <table class="table table-striped table-bordered">
-                    <thead>
-                    <tr>
-                        <th class="text-center" scope="col">DCA </th>
-                        <th class="text-center" scope="col">Starting date</th>
-                        <th class="text-center" scope="col">Ending date</th>
-                        <th scope="col" class="text-center">Days </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td class="text-right"><span id="dca_value">&nbsp;</span></td>
-                        <td class="text-right"><span id="starting_date">&nbsp;</span></td>
-                        <td class="text-right"><span id="ending_date">&nbsp;</span></td>
-                        <td class="text-right"><span id="no_days">&nbsp;</span></td>
-                    </tr>
-                    </tbody>
-                </table>
             </div>
-            <div>
-                <p class="figure-caption">*For more accurate selection, use the slider to zoom the chart along the x
-                    axis</p>
-                <p class="figure-caption">*Always select from the slider bar first. Then highlight the chart area for accurate calculations. </p>
-                <p class="figure-caption">You can move the slider bar selected area, left and right while keeping the selected days constant. </p>
+            <div class="col-md-6 mt-3" style="padding-right: 5px;padding-left: 5px">
+                <div>
 
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="text-center" scope="col">DCA </th>
+                                <th class="text-center" scope="col">Starting date</th>
+                                <th class="text-center" scope="col">Ending date</th>
+                                <th scope="col" class="text-center">Days </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-right"><span id="dca_value">&nbsp;</span></td>
+                                <td class="text-right"><span id="starting_date">&nbsp;</span></td>
+                                <td class="text-right"><span id="ending_date">&nbsp;</span></td>
+                                <td class="text-right"><span id="no_days">&nbsp;</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <p class="figure-caption">*For more accurate selection, use the slider to zoom the chart along the x
+                        axis</p>
+                    <p class="figure-caption">*Always select from the slider bar first. Then highlight the chart area
+                        for accurate calculations. </p>
+                    <p class="figure-caption">You can move the slider bar selected area, left and right while keeping
+                        the selected days constant. </p>
+
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<script src="resource/js/index.js"></script>
+    <script src="resource/js/index.js"></script>
 
 </body>
+
 </html>
