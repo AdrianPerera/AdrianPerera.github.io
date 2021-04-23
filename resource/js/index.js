@@ -109,7 +109,7 @@ fetch('bitcoin.json')
             showTitle: true,
             title: 'date'
         }
-        );
+        )
 
         chart.render();
 

@@ -25,16 +25,18 @@ function average(data) {
     const sum = data.reduce(function (a, b) {
         return a + parseFloat(b.value);
     }, 0);
-    const avg= sum/data.length;
-    return Math.round(avg,4);
+    const avg = sum / data.length;
+    return "$ " + avg.toFixed(2);
 }
 
 fetch('bitcoin.json')
     .then(res => res.json())
     .then(data => {
+        const initialDates = data.map(a => a.date);
         const ds = new DataSet({
             state: {
-                dates: null,
+                dates: initialDates,
+                object: null,
             }
         });
         const dv = ds.createView('origin').source(data);
@@ -117,12 +119,15 @@ fetch('bitcoin.json')
             inPlot: true,
             onBrushmove(event) {
                 const { data } = event;
-                console.log(data);
-                const avg= average(data);
-                $('#starting_date').text(data[0].date);
-                $('#ending_date').text(data[data.length - 1].date);
-                $('#dca_value').text(avg);
-                $('#no_days').text(data.length);
+                const avg = average(data);
+                if (data.length > 0) {
+                    const startDate = data[0].date;
+                    const endDate = data[data.length - 1].date;
+                    $('#starting_date').text(startDate.replace(/(\d{2})-(\d{2})-(\d{2})/g, dateConverter));
+                    $('#ending_date').text(endDate.replace(/(\d{2})-(\d{2})-(\d{2})/g, dateConverter));
+                    $('#dca_value').text(avg);
+                    $('#no_days').text(data.length);
+                }
             }
         });
 
@@ -176,7 +181,7 @@ fetch('bitcoin.json')
                 const { date } = ev;
                 ds.setState('dates', date);
             },
-            onDragMove(ev) {
+            onDragmove(ev) {
                 const { date } = ev;
                 ds.setState('dates', date);
             }
