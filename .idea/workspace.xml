@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ae5ac625-97c3-4018-9769-9db5507365fa" name="Default Changelist" comment="Default Changelist">
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resource/css/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/bitcoin-graph.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/bitcoin-graph.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -315,6 +320,8 @@
       <workItem from="1686780319314" duration="3169000" />
       <workItem from="1690264237899" duration="194000" />
       <workItem from="1690264659003" duration="14000" />
+      <workItem from="1690274332650" duration="620000" />
+      <workItem from="1693773423040" duration="4979000" />
     </task>
     <servers />
   </component>

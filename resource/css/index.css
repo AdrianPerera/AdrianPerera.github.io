@@ -1,0 +1,40 @@
+.imgHover img{
+    transition: all .2s ease-in-out;
+}
+.imgHover img:hover{
+    transform: scale(1.2);
+}
+
+.collapsible {
+    background-color: #777;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+}
+
+.active, .collapsible:hover {
+    background-color: #ffffff;
+}
+
+.content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in;
+    background-color: #ffffff;
+}
+
+.collapsible:after {
+    content: '\02C5'; /* Unicode character for "plus" sign (+) */
+    font-size: 15px;
+    color: #fff !important;
+    font-weight: bold;
+    float: right;
+    margin: 5px;
+}
+
+.active:after {
+    content: "\02C4"; /* Unicode character for "minus" sign (-) */
+}
